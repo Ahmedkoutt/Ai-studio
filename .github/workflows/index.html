@@ -1,101 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <title>الخبير التعليمي الذكي</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- PDF Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
-  <style>
-    body {
-      font-family: 'Noto Sans Arabic', sans-serif;
-      background: #f6f7f8;
-    }
-
-    @media print {
-      body {
-        background: white;
-      }
-
-      .no-print {
-        display: none !important;
-      }
-
-      .question {
-        page-break-inside: avoid;
-      }
-    }
-  </style>
-</head>
-
-<body class="p-6">
-
-  <!-- HEADER -->
-  <div class="flex justify-between items-center mb-6 no-print">
-    <h1 class="text-xl font-bold">📘 نظام توليد الأسئلة الذكي</h1>
-
-    <div class="flex gap-2">
-      <button onclick="printPage()" class="bg-blue-600 text-white px-4 py-2 rounded">
-        🖨️ طباعة
-      </button>
-
-      <button onclick="savePDF()" class="bg-green-600 text-white px-4 py-2 rounded">
-        💾 حفظ PDF
-      </button>
-    </div>
-  </div>
-
-  <!-- CONTENT TO PRINT -->
-  <div id="print-area" class="bg-white p-6 rounded shadow">
-
-    <h2 class="text-center text-xl font-bold mb-6">امتحان مادة الأحياء – الفصل الثالث</h2>
-
-    <!-- سؤال -->
-    <div class="question mb-6">
-      <p class="font-semibold mb-2">1) ما هو المكون الأساسي للخلية الحية؟</p>
-      <ul class="space-y-1">
-        <li>أ) الغشاء البلازمي</li>
-        <li>ب) النواة ✔</li>
-        <li>ج) السيتوبلازم</li>
-        <li>د) الميتوكندريا</li>
-      </ul>
-    </div>
-
-    <div class="question mb-6">
-      <p class="font-semibold mb-2">2) الأرض تدور حول الشمس في مدار دائري.</p>
-      <p>✔ صح / ✖ خطأ</p>
-    </div>
-
-  </div>
-
-  <!-- SCRIPTS -->
-  <script>
-    function printPage() {
-      window.print();
-    }
-
-    function savePDF() {
-      const element = document.getElementById("print-area");
-
-      const options = {
-        margin: 1,
-        filename: 'exam.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'cm', format: 'a4', orientation: 'portrait' }
-      };
-
-      html2pdf().set(options).from(element).save();
-    }
-  </script>
-
-</body>
-</html>
